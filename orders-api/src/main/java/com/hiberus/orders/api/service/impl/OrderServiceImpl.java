@@ -15,7 +15,7 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public ResponseDTO createOrder(OrderDTO order) {
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<ResponseDTO> response = restTemplate.postForEntity("http://checkout-process-api:8080/logistic", order, ResponseDTO.class);
+		ResponseEntity<ResponseDTO> response = restTemplate.postForEntity("http://checkout-process-api:8085/logistic", order, ResponseDTO.class);
 		if(response.getStatusCode().equals(HttpStatus.OK)) {
 			return response.getBody();
 		}
@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public ResponseDTO getTotalBillValue(Long orderId) {
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<ResponseDTO> response = restTemplate.getForEntity("http://checkout-process-api:8080/bill/"+orderId, ResponseDTO.class);
+		ResponseEntity<ResponseDTO> response = restTemplate.getForEntity("http://checkout-process-api:8085/bill/"+orderId, ResponseDTO.class);
 		if(response.getStatusCode().equals(HttpStatus.OK)) {
 			return response.getBody();
 		}

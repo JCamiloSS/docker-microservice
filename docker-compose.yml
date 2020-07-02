@@ -16,6 +16,7 @@ services:
       - mysql-standalone
     ports:
       - "8060:8085"
+    restart: unless-stopped
   orders-api:
     image: orders-api:latest
     build: orders-api/
