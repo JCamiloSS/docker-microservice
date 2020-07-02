@@ -15,9 +15,9 @@ services:
     depends_on:
       - mysql-standalone
     ports:
-      - "8060:8080"
+      - "8060:8085"
   orders-api:
     image: orders-api:latest
     build: orders-api/
     ports:
-      - "8050:8080"
+      - "8050:8085"

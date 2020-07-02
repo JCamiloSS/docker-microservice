@@ -13,13 +13,22 @@ import com.hiberus.orders.checkout.dto.OrderDTO;
 import com.hiberus.orders.checkout.dto.ResponseDTO;
 import com.hiberus.orders.checkout.service.OrderService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
+@Api(value = "Operations for checkout orders", description = "Necessary checkout operations used by the main service")
 public class CheckoutController {
 
 	@Autowired
 	private OrderService orderService;
 
 	@GetMapping("/bill/{orderId}")
+	@ApiOperation(value = "Calculate the total value of the invoice", response = ResponseEntity.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Calculate the successful total"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	public ResponseEntity<ResponseDTO> bill(@PathVariable("orderId") Long orderId) {
 		try {
 			ResponseDTO response = orderService.getTotalBillValue(orderId);
@@ -33,6 +42,9 @@ public class CheckoutController {
 	}
 
 	@PostMapping("/logistic")
+	@ApiOperation(value = "Creates the order", response = ResponseEntity.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully order created"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	public ResponseEntity<ResponseDTO> logistic(@RequestBody OrderDTO order) {
 		try {
 			ResponseDTO response = orderService.createOrder(order);
