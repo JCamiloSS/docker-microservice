@@ -57,4 +57,8 @@ To run the main service go to [http://localhost:8050/swagger-ui.html](http://loc
 ```
 and press execute and you can see the result. If you want to see the created orders you can visit the swagger in [http://localhost:8060/swagger-ui.html](http://localhost:8060/swagger-ui.html) and execute the /bill/{orderId} endpoint changing the orderId obtained in the previous executions. 
 
+## Additional notes
 
+- To unsubscribe the services press Ctrl + C
+- Make sure that in some cases you need to run the Docker and Docker-compose Commands as administrator. (In the case of Ubuntu with sudo, for Windows it was not necessary, but it is necessary to run the terminal as Administrator)
+- If after running docker-compose up you get the error "port is already allocated" run docker ps and copy the name of the connector to stop, then run docker stop container_name and try again

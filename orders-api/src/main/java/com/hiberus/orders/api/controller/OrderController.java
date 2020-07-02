@@ -26,9 +26,16 @@ public class OrderController {
 	@PostMapping("/")
 	@ApiOperation(value = "Orchestrate the checkout of the order", response = ResponseEntity.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully checkout order"),
-			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+			@ApiResponse(code = 400, message = "In case the body of the petition is incomplete")
+	})
 	public ResponseEntity<ResponseDTO> sendOrder(@RequestBody OrderDTO order) {
 		ResponseDTO response;
+		
+		if(order==null || order.getProducts()==null|| order.getProducts().isEmpty()) {
+			return new ResponseEntity<ResponseDTO>(new ResponseDTO("Error in the request body"), HttpStatus.BAD_REQUEST);
+		}
+		
 		ResponseDTO reponseCreateOrder = orderService.createOrder(order);
 		if (!reponseCreateOrder.isError()) {
 			OrderDTO orderResponse = Utilities.orderResponseToDto(reponseCreateOrder.getBody());
