@@ -10,9 +10,9 @@ This decision was made due to its easy configuration through yaml files.
 
 ## Prerequisites
 
-Java 1.8 
-Docker
-Docker-compose
+- Java 1.8 
+- Docker [Install](https://docs.docker.com/engine/install/)
+- Docker-compose [Install](https://docs.docker.com/compose/install/)
 
 ## Download
 
@@ -56,3 +56,5 @@ To run the main service go to [http://localhost:8050/swagger-ui.html](http://loc
 }
 ```
 and press execute and you can see the result. If you want to see the created orders you can visit the swagger in [http://localhost:8060/swagger-ui.html](http://localhost:8060/swagger-ui.html) and execute the /bill/{orderId} endpoint changing the orderId obtained in the previous executions. 
+
+
