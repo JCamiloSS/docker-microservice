@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mysql-standalone:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=wYXNzd29yZCJ9
+      - MYSQL_DATABASE=orders_db
+      - MYSQL_USER=joicm9vdCJ9
+      - MYSQL_PASSWORD=wYXNzd29yZCJ9
+    ports:
+      - "3306:3306"
+  checkout-process-api:
+    image: checkout-process-api:latest
+    build: checkout-process-api/
+    depends_on:
+      - mysql-standalone
+    ports:
+      - "8060:8080"
+  orders-api:
+    image: orders-api:latest
+    build: orders-api/
+    ports:
+      - "8050:8080"
